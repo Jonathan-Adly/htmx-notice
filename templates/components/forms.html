@@ -1,0 +1,20 @@
+ <form 
+    id = "form-1"
+    hx-post="{% url 'home' %}"
+    hx-target= "#form-1"
+    hx-swap= "outerHTML"
+  >
+
+<div id="form-1-holder" >
+{% include 'components/form-1.html' %}
+</div>
+
+<div id="form-2-holder" _= "on load hide">
+{% include 'components/form-2.html' %}
+</div>
+
+<div id="form-3-holder" _="on load hide">
+{% include 'components/form-3.html' %}
+</div>
+
+</form>

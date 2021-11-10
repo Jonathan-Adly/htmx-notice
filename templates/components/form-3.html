@@ -1,15 +1,16 @@
-<div id= "form-3"> it works 
 
+<h3> Landlord's Mailing Address </h3>
+<p> This is <strong> <u> NOT </u> </strong> the Rental Property Address (unless the Landlord and Tenant live together). </p>
+
+
+<strong> Enter the Landlord's Mailing Address </strong>
 <div class="text-right mt-10 w-400 mw-full">
-            <span 
-            class="btn btn-primary"
-            hx-get= "{% url 'form_2' %}"
-            hx-target ="#form-3"
-            hx-trigger = "click"
-            hx-swap = "outerHTML"
+            <span
+            class = "btn btn-primary" 
+            _= "on click show #form-2-holder then hide #form-3-holder"
             > &larr; Previus 
             </span>
 
-            <button class="btn btn-primary"> Next &rarr; </button>
-</div>
+            <span class="btn btn-primary"> Next &rarr; </span>
+
 </div>

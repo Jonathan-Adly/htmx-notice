@@ -1,0 +1,18 @@
+{% load crispy_forms_tags %}
+
+<div class= "content w-400">
+
+{{form_9|crispy}}
+</div>
+
+<div class="text-right mt-10 w-400 mw-full">
+            <span
+            class = "btn btn-primary" 
+            _= "on click if #rent.checked show #form-8-holder then hide #form-9-holder else show #form-7-holder then hide #form-9-holder"
+            > &larr; Previous 
+            </span>
+
+            <span class="btn btn-primary"
+            _= "on click show #form-10-holder then hide #form-9-holder"
+            > Next &rarr; </span>
+</div>  

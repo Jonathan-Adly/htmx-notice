@@ -1,0 +1,18 @@
+{% load crispy_forms_tags %}
+
+<div class= "content w-400">
+<h3> Non-Payment of Rent </h3>
+{{form_8|crispy}}
+</div>
+
+<div class="text-right mt-10 w-400 mw-full">
+            <span
+            class = "btn btn-primary" 
+            _= "on click show #form-7-holder then hide #form-8-holder"
+            > &larr; Previous 
+            </span>
+
+            <span class="btn btn-primary"
+            _= "on click show #form-9-holder then hide #form-8-holder"
+            > Next &rarr; </span>
+</div>  

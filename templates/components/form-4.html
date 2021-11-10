@@ -1,0 +1,17 @@
+{% load crispy_forms_tags %}
+<div class="content w-400 mw-full">
+<h3> Landlord's Contact Info </h3>
+
+{{form_4|crispy}}
+</div>
+<div class="text-right w-400 mw-full">
+            <span  
+            class="btn btn-primary"
+            _= "on click show #form-3-holder then hide #form-4-holder"
+            > &larr; Previous 
+            </span>
+
+            <span class="btn btn-primary"
+            _= "on click show #form-5-holder then hide #form-4-holder"
+            > Next &rarr; </span>
+        </div>

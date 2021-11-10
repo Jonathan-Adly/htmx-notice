@@ -1,0 +1,15 @@
+<div id= "form-3"> it works 
+
+<div class="text-right mt-10 w-400 mw-full">
+            <span 
+            class="btn btn-primary"
+            hx-get= "{% url 'form_2' %}"
+            hx-target ="#form-3"
+            hx-trigger = "click"
+            hx-swap = "outerHTML"
+            > &larr; Previus 
+            </span>
+
+            <button class="btn btn-primary"> Next &rarr; </button>
+</div>
+</div>

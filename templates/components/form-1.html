@@ -1,22 +1,43 @@
-<div id="form-1">
+
+ <form 
+    id = "form-1"
+    hx-post="{% url 'form_1' %}"
+    hx-target= "#form-1"
+    hx-swap= "outerHTML"
+  >
+<div class="content"> 
     <h3> The Violation </h3>
     <strong> Mark the Reason for This Notice </strong>
-    <div class="content w-400 mw-full mr-5 mt-0"> 
         <div class="mt-10 custom-radio">
-            <input name="radio_1" type="radio" id="rent" value="rent" id="rent">
+            <input 
+            name="radio_1" 
+            type="radio" 
+            id="rent" 
+            value="rent" 
+            id="rent" 
+            {% if doc_type == "non-compliance" %} {% else %} checked {% endif %}>
+            
             <label for="rent">Demand for Rent($)</label>
         </div>
 
         <div class="mt-10 custom-radio">
-        <input name="radio_1" type="radio" id="non-compliance" value="non-compliance" id="non-compliance">
+        <input 
+        name="radio_1" 
+        type="radio" 
+        id="non-compliance" 
+        value="non-compliance" 
+        id="non-compliance" 
+        {% if doc_type == "non-compliance" %} checked {% endif %}
+        >
         <label for="non-compliance">Non-Compliance with the Lease</label>
         </div>
-
-         <div class="text-right">
+</div>
+         <div class="text-right mt-10  w-400 mw-full">
             <button class="btn btn-primary" disabled> &larr; Previus </button>
             <button class="btn btn-primary"> Next &rarr; </button>
-       
         </div>
-    </div>
 
-</div>
+</form>
+
+
+

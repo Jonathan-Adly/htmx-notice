@@ -1,0 +1,33 @@
+<form id = "form-2">
+ <h3> Landlord's name </h3>
+
+<div class="form-group content w-400 mw-full">
+ <label for="landlord_name" class="required">Enter the Landlord's name</label>
+<input 
+type="text" 
+class="form-control alt-dm" 
+placeholder="Your Name"
+name = "landlord_name"
+id = "lardloard_name"
+{% if landlord_name %} value = "{{landlord_name}}" {% endif %}
+>
+
+</div>
+<div class="text-right mt-10 w-400 mw-full">
+            <span 
+            class="btn btn-primary"
+            hx-get= "{% url 'form_1' %}"
+            hx-target ="#form-2"
+            hx-trigger = "click"
+            hx-swap = "outerHTML"
+            > &larr; Previus 
+            </span>
+
+            <button class="btn btn-primary"
+            hx-post= "{% url 'form_2' %}"
+            hx-swap = "outerHTML"
+            hx-target = "#form-2"
+            hx-trigger = "click"
+            > Next &rarr; </button>
+</div>
+</form>

@@ -1,24 +1,23 @@
-
+{% load crispy_forms_tags %}
 <h3> Landlord's name </h3>
 
-        <div class="form-group content w-400 mw-full">
-            <label for="landlord_name" class="required">Enter the Landlord's name</label>
-            <input 
-            type="text" 
-            class="form-control alt-dm" 
-            placeholder="Your Name"
-            name = "landlord_name"
-            id = "lardloard_name"
-            >
+        <div class="content w-400 mw-full">
+            {{form_2|crispy}}
+            <div id="errors"> </div>
         </div>
-        <div class="text-right mt-10 w-400 mw-full">
-            <span  
+        <div 
+        class="text-right mt-10 w-400 mw-full">
+            <button  
+            type= "button" 
             class="btn btn-primary"
             _= "on click show #form-1-holder then hide #form-2-holder"
             > &larr; Previous 
-            </span>
+            </button>
 
-            <span class="btn btn-primary"
+            <button class="btn btn-primary"
+            id= "next2"
+            type= "button" 
+            disabled
             _= "on click show #form-3-holder then hide #form-2-holder"
-            > Next &rarr; </span>
+            >  Next &rarr; </button>
         </div>

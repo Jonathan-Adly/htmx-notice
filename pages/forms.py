@@ -1,4 +1,5 @@
 from django import forms
+from django.urls import reverse_lazy
 
 US_STATES = (
     ("", "---"),
@@ -67,16 +68,44 @@ class DateInput(forms.DateInput):
     input_type = "date"
 
 
+class Form2(forms.Form):
+    landlord_name = forms.CharField(
+        label="<strong> Enter the Landlord's name </strong>",
+        max_length=200,
+        required=True,
+    )
+
+    landlord_name.widget.attrs.update(
+        {
+            "placeholder": "Your Name",
+            "_": "on keyup if me.value != '' set #next2.disabled to false else set #next2.disabled to true",
+        }
+    )
+
+
 class Form3(forms.Form):
     landlord_street_address = forms.CharField(
         label="Street Adress", max_length=250, required=True
     )
     landlord_street_address_2 = forms.CharField(
-        label="Address Line 2", max_length=250, required=True
+        label="Address Line 2", max_length=250, required=False
     )
     landlord_city = forms.CharField(label="City", max_length=250, required=True)
     landlord_state = forms.ChoiceField(label="State", choices=US_STATES, required=True)
     landlord_zip_code = forms.CharField(label="Zip Code", max_length=250, required=True)
+
+    hypertext = (
+        "on change if #id_landlord_street_address.value == ''"
+        " or #id_landlord_city.value == ''"
+        " or #id_landlord_state.value == ''"
+        " or #id_landlord_zip_code.value == ''"
+        " set #next3.disabled to true else set #next3.disabled to false"
+    )
+
+    landlord_zip_code.widget.attrs.update({"_": hypertext})
+    landlord_state.widget.attrs.update({"_": hypertext})
+    landlord_street_address.widget.attrs.update({"_": hypertext})
+    landlord_city.widget.attrs.update({"_": hypertext})
 
 
 class Form4(forms.Form):

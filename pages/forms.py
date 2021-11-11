@@ -121,16 +121,45 @@ class Form4(forms.Form):
     )
 
 
+class Form5(forms.Form):
+    tentant_name = forms.CharField(
+        label=" <strong> Enter the Name(s) of the Tenant(s) </strong>",
+        max_length=200,
+        required=True,
+    )
+
+    tentant_name.widget.attrs.update(
+        {
+            "placeholder": "Tentant's Name",
+            "_": "on keyup if me.value != '' set #next5.disabled to false else set #next5.disabled to true",
+        }
+    )
+
+
 class Form6(forms.Form):
     tentant_street_address = forms.CharField(
         label="Street Adress", max_length=250, required=True
     )
     tentant_street_address_2 = forms.CharField(
-        label="Address Line 2", max_length=250, required=True
+        label="Address Line 2",
+        max_length=250,
     )
     tentant_city = forms.CharField(label="City", max_length=250, required=True)
     tentant_state = forms.ChoiceField(label="State", choices=US_STATES, required=True)
     tentant_zip_code = forms.CharField(label="Zip Code", max_length=250, required=True)
+
+    hypertext = (
+        "on change if #id_tentant_street_address.value == ''"
+        " or #id_tentant_city.value == ''"
+        " or #id_tentant_state.value == ''"
+        " or #id_tentant_zip_code.value == ''"
+        " set #next6.disabled to true else set #next6.disabled to false"
+    )
+
+    tentant_zip_code.widget.attrs.update({"_": hypertext})
+    tentant_state.widget.attrs.update({"_": hypertext})
+    tentant_street_address.widget.attrs.update({"_": hypertext})
+    tentant_city.widget.attrs.update({"_": hypertext})
 
 
 class Form7(forms.Form):
@@ -138,6 +167,12 @@ class Form7(forms.Form):
         label="<strong> When did the Lease begin? </strong>",
         widget=DateInput(),
         required=True,
+    )
+
+    lease_begin_date.widget.attrs.update(
+        {
+            "_": "on change if me.value != '' set #next7.disabled to false else set #next7.disabled to true",
+        }
     )
 
 
@@ -150,6 +185,12 @@ class Form8(forms.Form):
         choices=PAYMENT_METHOD,
         required=False,
         widget=forms.RadioSelect,
+    )
+
+    rent_amount.widget.attrs.update(
+        {
+            "_": "on change if me.value != '' set #next8.disabled to false else set #next8.disabled to true",
+        }
     )
 
 

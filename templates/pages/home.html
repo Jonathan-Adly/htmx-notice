@@ -2,13 +2,39 @@
 {% load static %}
 
 {% block content %}
-<div class= "content">
+<div class= "content row">
 
+    <div class= "col-8">
     <h2> New York Eviction Notice Form </h2>
     <hr class= "w-half" style="background-color: #F4F5F5; height: 5px; margin-left:0;" />
-
     {% include 'components/forms.html' %}
+    </div>
 
-
+        <div class= "col-4 mt-20" style="background-color: #F4F5F5;">
+            <table class="table">
+            <tbody>
+                <tr> <td> 
+                <span id="title1" class="font-weight-bold"
+                > The Violation </span> 
+                </td><tr>
+                <tr> <td> 
+                <span id="title2" > 
+                Landlord's Name </span>
+                </td> </tr>
+                <tr> <td>  Landlord's Mailing Address </td> </tr>
+                <tr> <td>  Landlord's Contact Info </td> </tr>
+                <tr> <td>  The Tentant(s) </td> </tr>
+                <tr> <td>  Property Address </td> </tr>
+                <tr> <td> Lease Start Date </td> </tr>
+                <tr> <td> Non-Payment of Rent </td> </tr>
+               <tr> <td>  Notice Date </td> </tr>
+                <tr> <td>  Signature Page </td> </tr>
+                
+           
+            <tbody>
+           </table>
+        </div>
 </div>
+        
+
 {% endblock %}

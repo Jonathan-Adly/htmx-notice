@@ -1,23 +1,32 @@
 {% load crispy_forms_tags %}
-<h3> Landlord's name </h3>
 
+<h3> Landlord's Name </h3>
+        <form hx-post= "{% url 'form_2' %}">
+        {% if errors %} {{errors}} {% endif %}
         <div class="content w-400 mw-full">
-            {{form_2|crispy}}
-            <div id="errors"> </div>
+            {{form|crispy}}
         </div>
         <div 
         class="text-right mt-10 w-400 mw-full">
             <button  
             type= "button" 
             class="btn btn-primary"
-            _= "on click show #form-1-holder then hide #form-2-holder"
+            hx-get= "{% url 'form_1' %}"
             > &larr; Previous 
             </button>
 
             <button class="btn btn-primary"
             id= "next2"
-            type= "button" 
-            disabled
-            _= "on click show #form-3-holder then hide #form-2-holder"
+            type= "submit"
+ 
             >  Next &rarr; </button>
         </div>
+</form>
+
+    <div 
+hx-trigger="load"
+hx-target="#table"
+hx-swap="outerHTML"
+hx-get="{% url 'update_table' 1 %}"
+>
+</div>

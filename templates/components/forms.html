@@ -1,48 +1,9 @@
- <form 
-    id = "form-1"
-    hx-post="{% url 'home' %}"
-    hx-target= "#form-1"
-    hx-swap= "outerHTML"
+ <div 
+    id = "form-holder"
+    hx-target= "#form-holder"
   >
 
-<div id="form-1-holder">
 {% include 'components/form-1.html' %}
-</div>
 
-<div id="form-2-holder" _= "on load hide">
-{% include 'components/form-2.html' %}
-</div>
 
-<div id="form-3-holder" _="on load hide">
-{% include 'components/form-3.html' %}
 </div>
-
-<div id="form-4-holder" _="on load hide">
-{% include 'components/form-4.html' %}
-</div>
-
-<div id="form-5-holder" _="on load hide">
-{% include 'components/form-5.html' %}
-</div>
-
-<div id="form-6-holder" _="on load hide">
-{% include 'components/form-6.html' %}
-</div>
-
-<div id="form-7-holder" _="on load hide">
-{% include 'components/form-7.html' %}
-</div>
-
-<div id="form-8-holder" _="on load hide">
-{% include 'components/form-8-optional.html' %}
-</div>
-
-<div id="form-9-holder" _="on load hide">
-{% include 'components/form-9.html' %}
-</div>
-
-<div id="form-10-holder" _="on load hide">
-{% include 'components/form-10.html' %}
-</div>
-
-</form>

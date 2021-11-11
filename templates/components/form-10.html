@@ -17,3 +17,11 @@
             
             > Save &rarr; </span>
 </div> 
+
+<div 
+hx-trigger="load"
+hx-target="#table"
+hx-swap="outerHTML"
+hx-get="{% url 'update_table' 9 %}"
+>
+</div>

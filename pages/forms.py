@@ -63,9 +63,23 @@ PAYMENT_METHOD = (
     ("money_order", "Money Order"),
 )
 
+DOCUMENT_TYPE = (
+    ("rent", "Demand for Rent($)"),
+    ("non_compliance", "Non-Compliance with the Lease"),
+)
+
 
 class DateInput(forms.DateInput):
     input_type = "date"
+
+
+class Form1(forms.Form):
+    document_type = forms.ChoiceField(
+        label="<strong>  Mark the Reason for This Notice </strong>",
+        choices=DOCUMENT_TYPE,
+        required=True,
+        widget=forms.RadioSelect,
+    )
 
 
 class Form2(forms.Form):
@@ -143,6 +157,7 @@ class Form6(forms.Form):
     tentant_street_address_2 = forms.CharField(
         label="Address Line 2",
         max_length=250,
+        required=False,
     )
     tentant_city = forms.CharField(label="City", max_length=250, required=True)
     tentant_state = forms.ChoiceField(label="State", choices=US_STATES, required=True)
@@ -169,12 +184,6 @@ class Form7(forms.Form):
         required=True,
     )
 
-    lease_begin_date.widget.attrs.update(
-        {
-            "_": "on change if me.value != '' set #next7.disabled to false else set #next7.disabled to true",
-        }
-    )
-
 
 class Form8(forms.Form):
     rent_amount = forms.IntegerField(
@@ -185,12 +194,6 @@ class Form8(forms.Form):
         choices=PAYMENT_METHOD,
         required=False,
         widget=forms.RadioSelect,
-    )
-
-    rent_amount.widget.attrs.update(
-        {
-            "_": "on change if me.value != '' set #next8.disabled to false else set #next8.disabled to true",
-        }
     )
 
 

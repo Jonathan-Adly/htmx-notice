@@ -1,42 +1,30 @@
+{% load crispy_forms_tags %}
 
             <h3> The Violation </h3>
-            <strong> Mark the Reason for This Notice </strong>
-            <div class="mt-10 custom-radio"
-            >
-                <input 
-                name="radio_1" 
-                type="radio" 
-                id="rent" 
-                value="rent" 
-                id="rent"
-                checked = "checked"
-                >
             
-                <label for="rent">Demand for Rent($)</label>
-            </div>
-
-            <div class="mt-10 custom-radio">
-                <input 
-                name="radio_1" 
-                type="radio" 
-                id="non-compliance" 
-                value="non-compliance" 
-                id="non-compliance" 
-                >
-                <label for="non-compliance">Non-Compliance with the Lease</label>
-            </div>
+            <form 
+            hx-post= "{% url 'form_1' %}"
+            >
+            {% if errors %} {{errors}} {% endif %}
+            
+            {{form|crispy}}
+          
         
         <div class="text-right mt-10  w-400 mw-full">
             <button class="btn btn-primary" disabled> &larr; Previous </button>
             <button 
-            type= "button"
             class="btn btn-primary"
-            _= "on click hide #form-1-holder 
-            then show #form-2-holder"
-            > 
+            type= "submit">
             Next &rarr; </button>
         </div>
 
 
+    </form>
 
-
+    <div 
+hx-trigger="load"
+hx-target="#table"
+hx-swap="outerHTML"
+hx-get="{% url 'update_table' 0 %}"
+>
+</div>

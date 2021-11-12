@@ -1,8 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from datetime import date
 
-from .forms import Form0, Form1, Form2, Form3, Form4, Form5, Form6, Form7, Form8
+from django.core.mail import EmailMessage
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+
+from weasyprint import HTML
+
+from .forms import Form0, Form1, Form2, Form3, Form4, Form5, Form6, Form7, Form8, Form9
 
 
 FORM_LIST = [
@@ -15,7 +22,7 @@ FORM_LIST = [
     {"Lease Start Date": Form6},
     {"Non-Payment of Rent": Form7},
     {"Notice Date": Form8},
-    {"Signature Page": ""},
+    {"Signature Page": Form9},
 ]
 
 
@@ -63,6 +70,8 @@ def form(request, form_num):
                 if request.session["form_0"]["document_type"] == "non_compliance":
                     form_num = form_num - 1
             request.session[f"form_{str(form_num)}"] = form.cleaned_data  # form_0
+            if form_num == 9:
+                return redirect("generate_pdf")
             return render(
                 request,
                 "components/form.html",
@@ -118,3 +127,33 @@ def update_table(request, form_num):
             "selected_title": title_list[form_num],
         },
     )
+
+
+def generate_pdf(request):
+    context = {
+        "form_0": request.session["form_0"],
+        "form_1": request.session["form_1"],
+        "form_2": request.session["form_2"],
+        "form_3": request.session["form_3"],
+        "form_4": request.session["form_4"],
+        "form_5": request.session["form_5"],
+        "form_6": request.session["form_6"],
+        "form_7": request.session["form_7"],
+        "form_8": request.session["form_8"],
+        "form_9": request.session["form_9"],
+    }
+    user_email = request.session["form_9"]["email"]
+    html_string = render_to_string("components/form-10.html", context)
+    html = HTML(string=html_string)
+    html.write_pdf(target="/tmp/mypdf.pdf")
+
+    email = EmailMessage(
+        "The Form you requested",
+        "Here is the file you requested",
+        "admin@test.com",  # from
+        [user_email],  # to
+    )
+    email.content_subtype = "html"
+    email.attach_file("/tmp/mypdf.pdf")
+    email.send()
+    return HttpResponse("Success")

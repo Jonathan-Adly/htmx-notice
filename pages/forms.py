@@ -163,3 +163,14 @@ class Form8(forms.Form):
         widget=DateInput(),
         required=True,
     )
+
+
+class Form9(forms.Form):
+    email = forms.EmailField(
+        label="Email we will send the form to", max_length=50, required=True
+    )
+    signature = forms.CharField(
+        label="<strong> Landlord  or Agent Signature </strong>",
+        max_length=50,
+        required=True,
+    )

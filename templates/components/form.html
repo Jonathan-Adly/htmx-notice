@@ -1,0 +1,39 @@
+{% load crispy_forms_tags %}
+
+            
+            <form 
+            hx-post= "{% url 'form' form_num %}"
+            >
+            {% if errors %} {{errors}} {% endif %}
+            <div class= "content w-400">
+            <h3> {{title}} </h3>
+            
+            {{form|crispy}}
+           {{test}}
+        
+        <div class="text-right mt-10  w-400 mw-full">
+           
+            <button class="btn btn-primary" 
+            type= "button"
+            
+            {% if form_num == 0 %} disabled {% else %} hx-get= "{% url 'form' previous_form %}" {%endif%}> 
+            
+            
+            &larr; Previous</button>
+            <button 
+            class="btn btn-primary"
+            type= "submit">
+            Next &rarr; </button>
+        </div>
+
+
+    </form>
+    </div>
+
+    <div 
+hx-trigger="load"
+hx-target="#table"
+hx-swap="outerHTML"
+hx-get="{% url 'update_table' form_num %}"
+>
+</div>

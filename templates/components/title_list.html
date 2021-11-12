@@ -5,13 +5,13 @@
                 <tr> <td> 
 
                 {% if selected_title == title %}
-               <span class="hyperlink font-weight-bold" hx-get="/form-{{forloop.counter}}" hx-target="#form-holder"> 
+               <span class="hyperlink font-weight-bold" hx-get="{% url 'form' forloop.counter0 %}" hx-target="#form-holder"> 
                 {{title}} </span>
 
                 {% elif title == "Non-Compliance with The Lease" %}
                 <span class="text-muted"> {{title}} </span>
                 {% else %}
-                <span class="hyperlink" hx-get="/form-{{forloop.counter}}" hx-target="#form-holder"> 
+                <span class="hyperlink" hx-get="{% url 'form' forloop.counter0 %}" hx-target="#form-holder"> 
                 {{title}} </span>
                 {% endif %}
                 

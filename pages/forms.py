@@ -73,7 +73,7 @@ class DateInput(forms.DateInput):
     input_type = "date"
 
 
-class Form1(forms.Form):
+class Form0(forms.Form):
     document_type = forms.ChoiceField(
         label="<strong>  Mark the Reason for This Notice </strong>",
         choices=DOCUMENT_TYPE,
@@ -82,22 +82,15 @@ class Form1(forms.Form):
     )
 
 
-class Form2(forms.Form):
+class Form1(forms.Form):
     landlord_name = forms.CharField(
         label="<strong> Enter the Landlord's name </strong>",
         max_length=200,
         required=True,
     )
 
-    landlord_name.widget.attrs.update(
-        {
-            "placeholder": "Your Name",
-            "_": "on keyup if me.value != '' set #next2.disabled to false else set #next2.disabled to true",
-        }
-    )
 
-
-class Form3(forms.Form):
+class Form2(forms.Form):
     landlord_street_address = forms.CharField(
         label="Street Adress", max_length=250, required=True
     )
@@ -108,21 +101,8 @@ class Form3(forms.Form):
     landlord_state = forms.ChoiceField(label="State", choices=US_STATES, required=True)
     landlord_zip_code = forms.CharField(label="Zip Code", max_length=250, required=True)
 
-    hypertext = (
-        "on change if #id_landlord_street_address.value == ''"
-        " or #id_landlord_city.value == ''"
-        " or #id_landlord_state.value == ''"
-        " or #id_landlord_zip_code.value == ''"
-        " set #next3.disabled to true else set #next3.disabled to false"
-    )
 
-    landlord_zip_code.widget.attrs.update({"_": hypertext})
-    landlord_state.widget.attrs.update({"_": hypertext})
-    landlord_street_address.widget.attrs.update({"_": hypertext})
-    landlord_city.widget.attrs.update({"_": hypertext})
-
-
-class Form4(forms.Form):
+class Form3(forms.Form):
     phone = forms.CharField(
         label="<strong> Enter the Landlord's Telephone Number (Optional) </strong>",
         max_length=12,
@@ -135,22 +115,15 @@ class Form4(forms.Form):
     )
 
 
-class Form5(forms.Form):
+class Form4(forms.Form):
     tentant_name = forms.CharField(
         label=" <strong> Enter the Name(s) of the Tenant(s) </strong>",
         max_length=200,
         required=True,
     )
 
-    tentant_name.widget.attrs.update(
-        {
-            "placeholder": "Tentant's Name",
-            "_": "on keyup if me.value != '' set #next5.disabled to false else set #next5.disabled to true",
-        }
-    )
 
-
-class Form6(forms.Form):
+class Form5(forms.Form):
     tentant_street_address = forms.CharField(
         label="Street Adress", max_length=250, required=True
     )
@@ -163,21 +136,8 @@ class Form6(forms.Form):
     tentant_state = forms.ChoiceField(label="State", choices=US_STATES, required=True)
     tentant_zip_code = forms.CharField(label="Zip Code", max_length=250, required=True)
 
-    hypertext = (
-        "on change if #id_tentant_street_address.value == ''"
-        " or #id_tentant_city.value == ''"
-        " or #id_tentant_state.value == ''"
-        " or #id_tentant_zip_code.value == ''"
-        " set #next6.disabled to true else set #next6.disabled to false"
-    )
 
-    tentant_zip_code.widget.attrs.update({"_": hypertext})
-    tentant_state.widget.attrs.update({"_": hypertext})
-    tentant_street_address.widget.attrs.update({"_": hypertext})
-    tentant_city.widget.attrs.update({"_": hypertext})
-
-
-class Form7(forms.Form):
+class Form6(forms.Form):
     lease_begin_date = forms.DateField(
         label="<strong> When did the Lease begin? </strong>",
         widget=DateInput(),
@@ -185,7 +145,7 @@ class Form7(forms.Form):
     )
 
 
-class Form8(forms.Form):
+class Form7(forms.Form):
     rent_amount = forms.IntegerField(
         label="<strong> Enter the Amount Due by the Tenant(s) </strong", required=False
     )
@@ -197,7 +157,7 @@ class Form8(forms.Form):
     )
 
 
-class Form9(forms.Form):
+class Form8(forms.Form):
     notice_date = forms.DateField(
         label="<strong> Enter the Date of This Notice? </strong>",
         widget=DateInput(),
